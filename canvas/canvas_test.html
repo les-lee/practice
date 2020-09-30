@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas_test</title>
+</head>
+
+<body>
+    <canvas style="border: 1px solid;" id="canvas" width="1200" height="800"></canvas>
+    <script src="https://d3js.org/d3-hierarchy.v2.min.js"></script>
+    <script>
+        const dataSource = 'https://s5.ssl.qhres.com/static/b0695e2dd30daa64.json';
+
+        /* globals d3 */
+        (async function () {
+            const data = await (await fetch(dataSource)).json();
+            const regions = d3.hierarchy(data)
+                .sum(d => 1)
+                .sort((a, b) => b.value - a.value);
+
+            const pack = d3.pack()
+                .size([1200, 800])
+                .padding(3);
+
+            const root = pack(regions);
+
+            const canvas = document.querySelector('canvas');
+            const context = canvas.getContext('2d');
+            const TAU = 2 * Math.PI;
+            const allCenter = []
+
+            function draw(ctx, node, { fillStyle = 'rgba(0, 0, 0, 0.2)', textColor = 'white', currentPoint } = {}) {
+                const children = node.children;
+                const { x, y, r } = node;
+                ctx.fillStyle = fillStyle;
+                if (currentPoint && twoPointDistance({ x, y }, currentPoint) < r) {
+                    ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
+                }
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, TAU);
+                ctx.fill();
+                allCenter.push({ x, y, r })
+                if (children) {
+                    for (let i = 0; i < children.length; i++) {
+                        draw(context, children[i], {currentPoint});
+                    }
+                } else {
+                    const name = node.data.name;
+                    ctx.fillStyle = textColor;
+                    if (currentPoint) console.log('红色？',twoPointDistance({ x, y }, currentPoint),r)
+                    if (currentPoint && twoPointDistance({ x, y }, currentPoint) < r) {
+                        ctx.fillStyle = 'red';
+                    }
+                    ctx.font = '1.12rem Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(name, x, y);
+                }
+            }
+            draw(context, root);
+            function twoPointDistance(p1, p2) {
+                let dep = Math.sqrt(Math.pow((p1.x - p2.x), 2) + Math.pow((p1.y - p2.y), 2));
+                return dep;
+            }
+            canvas.addEventListener('mousemove', function (e) {
+                const currentPoint = { x: e.offsetX, y: e.offsetY }
+                context.clearRect(0, 0, canvas.width, canvas.height)
+                draw(context, root, { currentPoint })
+            })
+
+
+
+        }());
+
+    </script>
+</body>
+
+</html>

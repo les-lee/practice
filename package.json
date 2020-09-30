@@ -1,0 +1,22 @@
+{
+  "name": "practice",
+  "version": "1.0.0",
+  "description": "练手玩具代码。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/les-lee/practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/les-lee/practice/issues"
+  },
+  "homepage": "https://github.com/les-lee/practice#readme",
+  "dependencies": {
+    "graphql": "^15.3.0"
+  }
+}
