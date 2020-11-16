@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid test</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            /* grid-template-rows: repeat(auto-fill, minmax(200px, 1fr)); */
+            /* grid-template-rows: 1fr; */
+            grid-auto-rows: 1fr;
+            grid-auto-flow: column dense;
+            gap: 1em;
+        }
+
+        .figrer {
+            grid-row: span 2;
+            grid-column: span 2;
+        }
+
+        figure {
+            margin: 0;
+            display: flex;
+            flex-flow: column;
+            /* width: 200px; */
+        }
+
+        img {
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        figcaption {
+            background-color: #222;
+            color: #fff;
+            font: italic smaller sans-serif;
+            padding: 3px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <figure class="figrer">
+            <img src="./images/head1.jpeg" alt="1">
+            <figcaption>1</figcaption>
+        </figure>
+        <figure>
+            <img src="./images/head1.jpeg" alt="2">
+            <figcaption>2</figcaption>
+        </figure>
+        <figure class="figrer">
+            <img src="./images/head1.jpeg" alt="3">
+            <figcaption>3</figcaption>
+        </figure>
+        <figure>
+            <img src="./images/head1.jpeg" alt="4">
+            <figcaption>4</figcaption>
+        </figure>
+        <figure class="figrer">
+            <img src="./images/head1.jpeg" alt="5">
+            <figcaption>5</figcaption>
+        </figure>
+        <figure>
+            <img src="./images/head1.jpeg" alt="6">
+            <figcaption>6</figcaption>
+        </figure>
+        <figure>
+            <img src="./images/head1.jpeg" alt="7">
+            <figcaption>7</figcaption>
+        </figure>
+        <figure>
+            <img src="./images/head1.jpeg" alt="8">
+            <figcaption>8</figcaption>
+        </figure>
+    </div>
+</body>
+
+</html>

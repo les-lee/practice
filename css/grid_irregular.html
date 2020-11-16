@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid test</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            /* grid-template-rows: repeat(auto-fill, minmax(200px, 1fr)); */
+            /* grid-template-rows: 1fr; */
+            grid-auto-rows: 1fr;
+            grid-auto-flow: row dense;
+            gap: 1em;
+        }
+
+        .figrer {
+            grid-row: span 2;
+            grid-column: span 2;
+        }
+
+        figure {
+            margin: 0;
+            display: flex;
+            flex-flow: column;
+            flex-grow: 1;
+            /* width: 200px; */
+        }
+
+        img {
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        figcaption {
+            background-color: #222;
+            color: #fff;
+            font: italic smaller sans-serif;
+            padding: 3px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <figure class="figrer">
+            <img src="./images/head1.jpeg" alt="Elephant at sunset">
+            <figcaption>An elephant at sunset</figcaption>
+        </figure>
+        <figure>
+            <img src="./images/head2.jpg" alt="Elephant at sunset">
+            <figcaption>An elephant at sunset</figcaption>
+        </figure>
+        <figure class="figrer">
+            <img src="./images/head3.jpeg" alt="Elephant at sunset">
+            <figcaption>An elephant at sunset</figcaption>
+        </figure>
+        <figure>
+            <img src="./images/head4.png" alt="Elephant at sunset">
+            <figcaption>An elephant at sunset</figcaption>
+        </figure>
+        <figure class="figrer">
+            <img src="./images/head5.jpeg" alt="Elephant at sunset">
+            <figcaption>An elephant at sunset</figcaption>
+        </figure>
+        <figure>
+            <img src="./images/head6.jpg" alt="Elephant at sunset">
+            <figcaption>An elephant at sunset</figcaption>
+        </figure>
+        <figure>
+            <img src="./images/head7.jpeg" alt="Elephant at sunset">
+            <figcaption>An elephant at sunset</figcaption>
+        </figure>
+        <figure>
+            <img src="./images/head8.jpeg"
+         alt="Elephant at sunset">
+            <figcaption>An elephant at sunset</figcaption>
+        </figure>
+    </div>
+</body>
+
+</html>
